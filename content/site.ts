@@ -244,6 +244,12 @@ export const site = {
       },
     ],
     microVisuals: {
+      barsLabel: "You vs competitors · AI mentions",
+      articleBadge: "Cited by 3 AI engines",
+      ringTitle: "Next refresh in 12 days",
+      ringSub: "Day 43 of a 60-day cycle",
+      sparkLabel: "Leads from AI",
+      sparkValue: "+212%",
       bars: [
         { label: "You", value: 34, you: true },
         { label: "Comp. A", value: 78 },
