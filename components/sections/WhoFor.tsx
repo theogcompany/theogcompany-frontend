@@ -19,7 +19,7 @@ export function WhoFor() {
   }, [reduce, w.industries.length]);
 
   return (
-    <Section id={w.id} eyebrow={w.eyebrow} title={w.title}>
+    <Section id={w.id} eyebrow={w.eyebrow} title={w.title} className="lg:!pb-20">
       <Reveal className="mt-12 flex flex-col items-center gap-10">
         <RevealItem as="ul" className="flex max-w-[860px] flex-wrap justify-center gap-3">
           {w.industries.map((ind, i) => (

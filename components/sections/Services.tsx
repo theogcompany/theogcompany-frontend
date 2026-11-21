@@ -33,7 +33,7 @@ export function Services() {
                 ))}
               </ul>
 
-              <div className="mt-auto rounded-2xl border border-line bg-bg/70 p-4">
+              <div className="flex flex-1 flex-col justify-center rounded-2xl border border-line bg-bg/70 p-4">
                 <MicroVisual kind={c.visual as MicroVisualKey} />
               </div>
             </article>

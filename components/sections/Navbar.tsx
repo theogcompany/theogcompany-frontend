@@ -58,7 +58,9 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <BookCallButton size="sm" className="hidden sm:inline-flex" />
+          <span className="hidden sm:inline-flex">
+            <BookCallButton size="sm" />
+          </span>
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}

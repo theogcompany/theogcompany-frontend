@@ -9,13 +9,13 @@ export function Tracking() {
   return (
     <section id={t.id} aria-labelledby={`${t.id}-title`} className="relative section-y">
       <div className="container-page grid items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-        <Reveal className="order-2 lg:order-1">
+        <Reveal className="order-2 min-w-0 lg:order-1">
           <RevealItem>
             <DashboardMock />
           </RevealItem>
         </Reveal>
 
-        <Reveal className="order-1 flex flex-col gap-5 lg:order-2">
+        <Reveal className="order-1 flex min-w-0 flex-col gap-5 lg:order-2">
           <RevealItem>
             <Pill>{t.eyebrow}</Pill>
           </RevealItem>

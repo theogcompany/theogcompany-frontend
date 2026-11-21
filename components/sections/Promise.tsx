@@ -6,7 +6,7 @@ import { Reveal, RevealItem } from "@/components/ui/Reveal";
 export function OurPromise() {
   const p = site.promise;
   return (
-    <Section id={p.id} eyebrow={p.eyebrow} title={p.title} className="lg:!pt-24">
+    <Section id={p.id} eyebrow={p.eyebrow} title={p.title} className="lg:!pt-20">
       <Reveal as="ul" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {p.items.map((it) => (
           <RevealItem as="li" key={it.title} className="glass flex flex-col gap-3 rounded-[24px] p-6">

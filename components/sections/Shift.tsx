@@ -64,12 +64,12 @@ export function Shift() {
               <div
                 aria-hidden={mode !== "then"}
                 className={cn(
-                  "flex flex-col gap-2.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                  "flex flex-col gap-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
                   mode === "then" ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0",
                 )}
               >
                 {Array.from({ length: 10 }).map((_, i) => (
-                  <div key={i} className="flex items-center gap-3 rounded-xl px-1 py-1">
+                  <div key={i} className="flex items-center gap-3 rounded-xl px-1 py-0.5">
                     <span className="h-5 w-5 shrink-0 rounded-full bg-ink/[0.07]" />
                     <div className="flex flex-1 flex-col gap-1.5">
                       <span className="h-2 rounded-full bg-[#93C5FD]/70" style={{ width: `${70 - ((i * 13) % 30)}%` }} />

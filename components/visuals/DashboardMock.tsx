@@ -76,9 +76,9 @@ export function DashboardMock() {
           {d.kpis.map((k) => (
             <div key={k.label} className="rounded-2xl border border-line bg-white/70 p-3.5">
               <dt className="text-[12px] text-subtle">{k.label}</dt>
-              <dd className="mt-1.5 flex items-baseline gap-2">
+              <dd className="mt-1.5 flex flex-col items-start gap-0.5">
                 <span className="text-[22px] font-semibold tracking-[-0.02em] text-ink tabular-nums">{k.value}</span>
-                <span className="inline-flex items-center text-[11px] font-medium text-emerald-700">
+                <span className="inline-flex items-center whitespace-nowrap text-[11px] font-medium text-emerald-700">
                   <ArrowUpRight className="h-3 w-3" aria-hidden="true" />
                   {k.delta}
                 </span>

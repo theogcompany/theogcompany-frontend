@@ -1,23 +1,12 @@
-"use client";
-
-import { m, useReducedMotion, type Variants } from "framer-motion";
-import { EASE } from "@/lib/cn";
+import { createElement } from "react";
 
 type Tag = "div" | "ul" | "ol" | "li" | "header";
 
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-const itemMotion: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
-
-const itemStatic: Variants = { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } };
-
-/** Stagger container: fades children up once, at 20% in view. */
+/**
+ * Progressive-enhancement reveal. Content is fully visible in the static HTML.
+ * Only when JS is running (html.js) does CSS hide `.reveal-item`s; the single
+ * <RevealObserver /> then fades them up (16px, 0.6s, stagger 0.08s) once in view.
+ */
 export function Reveal({
   children,
   className,
@@ -27,18 +16,7 @@ export function Reveal({
   className?: string;
   as?: Tag;
 }) {
-  const M = m[as];
-  return (
-    <M
-      className={className}
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {children}
-    </M>
-  );
+  return createElement(as, { className, "data-reveal": "" }, children);
 }
 
 export function RevealItem({
@@ -50,11 +28,5 @@ export function RevealItem({
   className?: string;
   as?: Tag;
 }) {
-  const reduce = useReducedMotion();
-  const M = m[as];
-  return (
-    <M className={className} variants={reduce ? itemStatic : itemMotion}>
-      {children}
-    </M>
-  );
+  return createElement(as, { className: className ? `reveal-item ${className}` : "reveal-item" }, children);
 }

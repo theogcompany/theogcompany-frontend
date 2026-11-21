@@ -4,6 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { site } from "@/content/site";
 import { BookingProvider } from "@/components/booking/BookingProvider";
+import { RevealObserver, revealBootScript } from "@/components/ui/RevealObserver";
 import "./globals.css";
 
 const title = `${site.name} · ${site.tagline.replace(/\.$/, "")}`;
@@ -97,8 +98,9 @@ function jsonLd() {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: revealBootScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()).replace(/</g, "\\u003c") }}
@@ -106,6 +108,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body>
         <BookingProvider>{children}</BookingProvider>
+        <RevealObserver />
       </body>
     </html>
   );

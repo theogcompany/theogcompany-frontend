@@ -115,7 +115,9 @@ export function BookingModal({ open, onClose }: { open: boolean; onClose: () => 
             <div className="thinking-bar h-[380px] w-full rounded-2xl" />
           </div>
         )}
-        {status === "failed" ? (
+        {/* Cal.com renders into this node; keep it mounted (hidden on failure) so React and Cal never fight over it. */}
+        <div id={ELEMENT_ID} hidden={status === "failed"} className="h-full min-h-[520px] w-full" />
+        {status === "failed" && (
           <div className="flex min-h-[520px] flex-col items-center justify-center gap-4 p-8 text-center">
             <p className="max-w-[420px] text-[16px] text-body">
               The scheduler didn&apos;t load here. You can book directly on our booking page.
@@ -130,8 +132,6 @@ export function BookingModal({ open, onClose }: { open: boolean; onClose: () => 
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
-        ) : (
-          <div id={ELEMENT_ID} className="h-full min-h-[520px] w-full" />
         )}
       </div>
     </Modal>

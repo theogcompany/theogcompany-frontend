@@ -163,12 +163,12 @@ function Sparkline() {
   const d = pts.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
   const last = pts[pts.length - 1];
   return (
-    <div className="flex items-end gap-5">
+    <div className="flex min-w-0 items-end gap-5">
       <div>
         <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-subtle">{mv.sparkLabel}</p>
         <p className="mt-1 text-[26px] font-semibold tracking-[-0.02em] text-ink tabular-nums">{mv.sparkValue}</p>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-14 w-full max-w-[260px] overflow-visible" aria-hidden="true">
+      <svg viewBox={`0 0 ${W} ${H}`} className="h-14 min-w-0 flex-1 max-w-[260px] overflow-visible" aria-hidden="true">
         <m.path
           d={d}
           fill="none"
