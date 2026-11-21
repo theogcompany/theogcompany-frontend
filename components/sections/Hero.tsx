@@ -11,7 +11,7 @@ const PILL_POS = [
   "right-[-7%] top-[8%]",
   "left-[-9%] top-[58%]",
   "right-[-5%] top-[52%]",
-  "left-[38%] bottom-[-5%]",
+  "right-[12%] bottom-[-3%]",
 ];
 
 export function Hero() {

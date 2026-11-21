@@ -43,7 +43,7 @@ export function Modal({
       }
       if (e.key !== "Tab" || !panel) return;
       const nodes = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
-        (n) => n.getClientRects().length > 0,
+        (n) => n.getClientRects().length > 0 && !n.classList.contains("sr-only"),
       );
       if (nodes.length === 0) {
         e.preventDefault();
@@ -92,6 +92,8 @@ export function Modal({
           className,
         )}
       >
+        {/* Focus sentinels: tabbing out of the (cross-origin) Cal.com iframe lands here and wraps back inside. */}
+        <span tabIndex={open ? 0 : -1} aria-hidden="true" className="sr-only" onFocus={() => focusEdge(panelRef.current, "last")} />
         <button
           type="button"
           onClick={onClose}
@@ -101,7 +103,16 @@ export function Modal({
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
         {children}
+        <span tabIndex={open ? 0 : -1} aria-hidden="true" className="sr-only" onFocus={() => focusEdge(panelRef.current, "first")} />
       </div>
     </div>
   );
+}
+
+function focusEdge(panel: HTMLElement | null, edge: "first" | "last") {
+  if (!panel) return;
+  const nodes = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+    (n) => n.getClientRects().length > 0 && !n.classList.contains("sr-only"),
+  );
+  (edge === "first" ? nodes[0] : nodes[nodes.length - 1])?.focus();
 }
