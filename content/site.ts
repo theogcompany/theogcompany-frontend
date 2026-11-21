@@ -119,6 +119,7 @@ export const site = {
       thenCaption: "10 blue links. You had a shot on page one.",
       nowCaption: "One answer. Three names. Everyone else is invisible.",
       query: "best accounting firm for startups in bangalore",
+      aiLabel: "AI answer",
       aiAnswerIntro: "Based on reviews and expert sources, the top options are:",
       brands: [
         { name: "Brand A", note: "Startup-focused, fixed monthly pricing" },
