@@ -44,7 +44,7 @@ export function Navbar() {
           <Logo id="nav-logo" />
         </a>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-1 lg:flex">
           {site.nav.map((l) => (
             <li key={l.href}>
               <a
@@ -67,7 +67,7 @@ export function Navbar() {
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/[0.05] md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/[0.05] lg:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
@@ -78,7 +78,7 @@ export function Navbar() {
         id="mobile-menu"
         inert={!menuOpen}
         className={cn(
-          "fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col bg-bg/95 px-6 pb-[max(24px,env(safe-area-inset-bottom))] pt-6 backdrop-blur-xl transition-[opacity,transform] duration-300 md:hidden",
+          "fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col bg-bg/95 px-6 pb-[max(24px,env(safe-area-inset-bottom))] pt-6 backdrop-blur-xl transition-[opacity,transform] duration-300 lg:hidden",
           menuOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0",
         )}
       >

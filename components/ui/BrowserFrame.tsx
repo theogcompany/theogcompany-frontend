@@ -15,14 +15,16 @@ export function BrowserFrame({
   children,
   className,
   bodyClassName,
+  frosted = false,
 }: {
   title?: string;
   children: React.ReactNode;
   className?: string;
   bodyClassName?: string;
+  frosted?: boolean;
 }) {
   return (
-    <div className={cn("glass overflow-hidden rounded-[20px] shadow-float", className)}>
+    <div className={cn("overflow-hidden rounded-[20px] shadow-float", frosted ? "glass-blur" : "glass", className)}>
       <div className="flex h-10 items-center gap-3 border-b border-line bg-white/50 px-4">
         <WindowDots />
         {title && <span className="mx-auto truncate pr-10 text-[12px] font-medium text-subtle">{title}</span>}

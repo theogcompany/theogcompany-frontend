@@ -7,7 +7,7 @@ import { DashboardMock } from "@/components/visuals/DashboardMock";
 export function Tracking() {
   const t = site.tracking;
   return (
-    <section id={t.id} aria-labelledby={`${t.id}-title`} className="relative section-y">
+    <section id={t.id} aria-labelledby={`${t.id}-title`} className="cv-auto relative section-y">
       <div className="container-page grid items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
         <Reveal className="order-2 min-w-0 lg:order-1">
           <RevealItem>

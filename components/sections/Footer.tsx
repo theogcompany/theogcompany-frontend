@@ -6,7 +6,7 @@ import { LinkedInIcon } from "@/components/ui/Icons";
 export function Footer() {
   const f = site.footer;
   return (
-    <footer className="border-t border-line-strong pb-28 pt-14 md:pb-14">
+    <footer className="cv-auto border-t border-line-strong pb-28 pt-14 md:pb-14 [contain-intrinsic-size:auto_320px]">
       <div className="container-page flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col gap-3">
           <a href="#top" className="w-fit rounded-lg" aria-label={`${site.name}, back to top`}>

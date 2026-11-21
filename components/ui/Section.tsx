@@ -23,7 +23,7 @@ export function Section({
 }) {
   const titleId = `${id}-title`;
   return (
-    <section id={id} aria-labelledby={titleId} className={cn("relative section-y", className)}>
+    <section id={id} aria-labelledby={titleId} className={cn("cv-auto relative section-y", className)}>
       <div className="container-page">
         <Reveal
           as="header"

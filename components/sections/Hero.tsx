@@ -41,7 +41,7 @@ export function Hero() {
 
         <div id="hero-cta" className="hero-in mt-9 flex flex-col items-center gap-3" style={{ animationDelay: "160ms" }}>
           <BookCallButton size="lg" />
-          <p className="text-[13px] text-subtle">{site.booking.heroMicrocopy}</p>
+          <p className="text-[13px] text-body">{site.booking.heroMicrocopy}</p>
         </div>
 
         <div className="hero-in relative mt-16 w-full max-w-[760px] md:mt-20" style={{ animationDelay: "240ms" }}>

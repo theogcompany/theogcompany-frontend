@@ -78,7 +78,7 @@ export function Logo({
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoOG id={id} className="h-6" />
       {withWordmark && (
-        <span className="text-[15px] font-semibold tracking-[-0.01em] text-ink">The OG Company</span>
+        <span className="whitespace-nowrap text-[15px] font-semibold tracking-[-0.01em] text-ink">The OG Company</span>
       )}
     </span>
   );

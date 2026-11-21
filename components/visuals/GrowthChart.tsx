@@ -1,8 +1,9 @@
-"use client";
-
-import { m, useReducedMotion } from "framer-motion";
 import { site } from "@/content/site";
-import { EASE } from "@/lib/cn";
+
+/*
+ * Server-rendered SVG area chart (no chart library). The line draws itself and the
+ * fill/milestones fade in via CSS when the shared RevealObserver marks it in view.
+ */
 
 type Pt = { x: number; y: number };
 type Variant = "wide" | "compact";
@@ -28,9 +29,8 @@ function smoothPath(pts: Pt[]) {
   return d;
 }
 
-function ChartSvg({ variant, label }: { variant: Variant; label?: string }) {
+function ChartSvg({ variant, label }: { variant: Variant; label: string }) {
   const { series, milestones } = site.origin.chart;
-  const reduce = useReducedMotion();
   const { W, H, pad, font } = DIMS[variant];
   const compact = variant === "compact";
   const max = Math.max(...series.map((s) => s.value)) * 1.08;
@@ -43,18 +43,11 @@ function ChartSvg({ variant, label }: { variant: Variant; label?: string }) {
   }));
   const line = smoothPath(pts);
   const area = `${line} L${pts[pts.length - 1].x},${base} L${pts[0].x},${base} Z`;
-  const view = { once: true, amount: 0.4 } as const;
   const id = `gc-${variant}`;
   const labelStep = compact ? 4 : 2;
 
   return (
-    <svg
-      viewBox={`0 0 ${W} ${H}`}
-      role={label ? "img" : undefined}
-      aria-label={label}
-      aria-hidden={label ? undefined : true}
-      className="h-auto w-full overflow-visible"
-    >
+    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label} className="h-auto w-full overflow-visible" data-reveal="">
       <defs>
         <linearGradient id={`${id}-stroke`} x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#8B7CF6" />
@@ -72,38 +65,16 @@ function ChartSvg({ variant, label }: { variant: Variant; label?: string }) {
       ))}
       <line x1={pad.left} x2={W - pad.right} y1={base} y2={base} stroke="rgba(15,23,42,0.1)" />
 
-      <m.path
-        d={area}
-        fill={`url(#${id}-fill)`}
-        initial={reduce ? false : { opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={view}
-        transition={{ duration: 1.2, delay: 0.6, ease: EASE }}
-      />
-      <m.path
-        d={line}
-        fill="none"
-        stroke={`url(#${id}-stroke)`}
-        strokeWidth={3}
-        strokeLinecap="round"
-        initial={reduce ? false : { pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={view}
-        transition={{ duration: 1.8, ease: EASE }}
-      />
+      <path className="anim-fade" d={area} fill={`url(#${id}-fill)`} style={{ transitionDelay: "600ms", transitionDuration: "1.2s" }} />
+      <path className="anim-draw" pathLength={1} d={line} fill="none" stroke={`url(#${id}-stroke)`} strokeWidth={3} strokeLinecap="round" />
 
       {milestones.map((ms, i) => {
         const p = pts[ms.index];
         const labelW = ms.label.length * 7.4 + 20;
         const lx = Math.min(Math.max(p.x - labelW / 2, pad.left), W - pad.right - labelW);
+        const delay = `${Math.round(500 + (ms.index / series.length) * 1400 + i * 50)}ms`;
         return (
-          <m.g
-            key={ms.label}
-            initial={reduce ? false : { opacity: 0, y: 6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={view}
-            transition={{ duration: 0.5, delay: 0.5 + (ms.index / series.length) * 1.4 + i * 0.05, ease: EASE }}
-          >
+          <g key={ms.label} className="anim-fade" style={{ transitionDelay: delay }}>
             {compact ? (
               <>
                 <circle cx={p.x} cy={p.y} r={11} fill="#0F172A" stroke="#fff" strokeWidth={2.5} />
@@ -121,7 +92,7 @@ function ChartSvg({ variant, label }: { variant: Variant; label?: string }) {
                 </text>
               </>
             )}
-          </m.g>
+          </g>
         );
       })}
 

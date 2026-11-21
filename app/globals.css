@@ -156,7 +156,16 @@ p {
 /* ------------------------------------------------------------------ */
 /* Surfaces & accents                                                  */
 /* ------------------------------------------------------------------ */
+/* Cards: near-opaque white reads as glass on this light page without the
+   cost of backdrop-filter (which is expensive over animated blobs). */
 @utility glass {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+}
+
+/* True frosted glass: reserved for the navbar, modal and hero window. */
+@utility glass-blur {
   background: var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-card);
@@ -184,6 +193,13 @@ p {
     max-width: calc(1120px + 64px);
     padding-inline: 32px;
   }
+}
+
+/* Skip rendering work for off-screen sections (content stays in the DOM,
+   accessibility tree and find-in-page). Remembers its real size once rendered. */
+@utility cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
 }
 
 @utility section-y {
@@ -265,31 +281,37 @@ p {
   }
 }
 
+/* Blobs are radial gradients, not blurred circles: same look, no filter cost.
+   Colour comes from --blob (set per element), opacity from the opacity utility. */
 .blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(64px);
   pointer-events: none;
-  will-change: transform;
+  background: radial-gradient(closest-side, var(--blob) 0%, color-mix(in srgb, var(--blob) 55%, transparent) 45%, transparent 100%);
+  contain: strict;
 }
-.blob-a {
+/* Ambient loops start only once html.anim-on is set (after load + idle), so they
+   never compete with first paint or hydration. */
+.anim-on .blob-a {
   animation: blob-drift-a 26s ease-in-out infinite;
 }
-.blob-b {
+.anim-on .blob-b {
   animation: blob-drift-b 22s ease-in-out infinite;
 }
-.blob-c {
+.anim-on .blob-c {
   animation: blob-drift-a 30s ease-in-out infinite reverse;
 }
 
-.float-y {
-  animation: float-y 6s ease-in-out infinite;
+.anim-on .float-y {
+  animation-name: float-y;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 /* Section reveal: progressive enhancement (see components/ui/Reveal.tsx). */
 .js [data-reveal] .reveal-item {
   opacity: 0;
-  transform: translate3d(0, 16px, 0);
+  transform: translateY(16px);
   transition:
     opacity 0.6s var(--ease-out),
     transform 0.6s var(--ease-out);
@@ -304,6 +326,112 @@ p {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* Chat demo: words and chips fade in on staggered delays (one React render). */
+@keyframes word-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.word-in {
+  opacity: 0;
+  animation: word-in 0.25s var(--ease-out) forwards;
+}
+.rise-in {
+  opacity: 0;
+  animation: rise-in 0.5s var(--ease-out) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .word-in,
+  .rise-in {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* In-view micro animations, keyed off the same [data-reveal].is-in hook.
+   Without JS (no html.js) everything renders in its final state. */
+.anim-bar {
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-out);
+}
+.js [data-reveal]:not(.is-in) .anim-bar {
+  transform: scaleX(0);
+}
+.anim-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.8s var(--ease-out);
+}
+.js [data-reveal]:not(.is-in) .anim-draw {
+  stroke-dashoffset: 1;
+}
+.anim-fade {
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+.js [data-reveal]:not(.is-in) .anim-fade {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.anim-ring {
+  transition: stroke-dashoffset 1.4s var(--ease-out);
+}
+.js [data-reveal]:not(.is-in) .anim-ring {
+  stroke-dashoffset: var(--ring-from);
+}
+
+/* Who-it's-for pills: sequential soft highlight, opacity-only (composited). */
+@keyframes pill-glow {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  6%,
+  12% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+}
+.pill-seq {
+  position: relative;
+  isolation: isolate;
+}
+.pill-seq::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  box-shadow: var(--shadow-card);
+  opacity: 0;
+  animation: pill-glow calc(var(--n) * 1.4s) var(--ease-out) infinite;
+  animation-delay: calc(var(--i) * 1.4s);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pill-seq::before {
+    animation: none;
   }
 }
 
@@ -324,12 +452,15 @@ p {
 
 .shimmer::after {
   content: "";
+  transform: translateX(-120%) skewX(-20deg);
   position: absolute;
   inset: 0;
   width: 40%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
-  animation: shimmer-sweep 4s var(--ease-out) infinite;
   pointer-events: none;
+}
+.anim-on .shimmer::after {
+  animation: shimmer-sweep 4s var(--ease-out) infinite;
 }
 
 .caret {

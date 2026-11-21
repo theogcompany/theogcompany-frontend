@@ -6,7 +6,7 @@ import { BookCallButton } from "@/components/booking/BookCallButton";
 export function FinalCTA() {
   const f = site.finalCta;
   return (
-    <section id="book" aria-labelledby="book-title" className="pb-24 pt-8 md:pb-32">
+    <section id="book" aria-labelledby="book-title" className="cv-auto pb-24 pt-8 md:pb-32">
       <div className="container-page">
         <div id="final-cta" className="relative isolate overflow-hidden rounded-[32px] border border-white/70 bg-white/40 px-6 py-20 text-center shadow-float md:px-12 md:py-28">
           <Blobs variant="cta" />

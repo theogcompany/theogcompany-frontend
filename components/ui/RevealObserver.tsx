@@ -27,6 +27,19 @@ export function RevealObserver() {
       el.classList.add("is-in");
     };
 
+    // Ambient loops (blob drift, pill float, CTA shimmer) start after load + idle.
+    let ambientTimer: number | undefined;
+    const startAmbient = () => {
+      ambientTimer = window.setTimeout(() => {
+        const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number })
+          .requestIdleCallback;
+        if (ric) ric(() => root.classList.add("anim-on"), { timeout: 2000 });
+        else root.classList.add("anim-on");
+      }, 1500);
+    };
+    if (document.readyState === "complete") startAmbient();
+    else window.addEventListener("load", startAmbient, { once: true });
+
     if (!("IntersectionObserver" in window)) {
       root.classList.add("reveal-all");
       return;
@@ -46,7 +59,11 @@ export function RevealObserver() {
       { threshold: [0, 0.05, 0.1, 0.15, 0.2] },
     );
     containers.forEach((c) => io.observe(c));
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      window.removeEventListener("load", startAmbient);
+      if (ambientTimer !== undefined) clearTimeout(ambientTimer);
+    };
   }, []);
 
   return null;
