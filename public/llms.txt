@@ -1,0 +1,48 @@
+# The OG Company
+
+> The OG Company is an SEO and AEO/GEO (Answer Engine Optimization / Generative Engine Optimization) agency based in India. We get businesses recommended in AI search (ChatGPT, Gemini, Perplexity, Claude and Google AI Overviews) and turn that visibility into leads.
+
+Canonical URL: https://theogcompany.com
+Contact: hello@theogcompany.com
+LinkedIn: https://www.linkedin.com/company/the-og-company
+
+## What we do
+
+One team runs a business's SEO and AEO end to end, fully managed. The client approves; we execute.
+
+1. **AI Visibility Audit**: Map the questions buyers ask AI, show who AI recommends today, and deliver a gap report against competitors.
+2. **Technical Fixes**: Schema and structured data, crawlability and sitemaps, robots.txt and llms.txt, so AI can read and trust the site.
+3. **Content That Gets Cited**: Answer-first articles with FAQ schema, written for both AI engines and Google.
+4. **Authority Building**: Presence on Reddit, Quora and industry sites, plus quality backlinks, on the sources AI already quotes.
+5. **Refresh Engine**: Content refreshed every 45–60 days, with monitoring for AI model changes.
+6. **Tracking & Reports**: Monthly reporting on share of AI answers, citations, traffic and leads attributed to AI sources.
+
+## How it works
+
+- Week 1 · Audit: find the questions buyers ask AI and who wins them today.
+- Weeks 2–3 · Fix: build the technical foundation so AI can crawl and trust the site.
+- Month 1+ · Publish: cited content plus authority on the sources AI already quotes.
+- Every month · Grow: track, refresh and compound what works.
+
+## Who it's for
+
+Businesses whose customers research before they buy: SaaS, fintech, education, healthcare, legal and CA firms, real estate, D2C brands and professional services.
+
+## Proof
+
+The team co-founded OGcollege (https://ogcollege.io), an AI college counselling platform for Indian students, and engineered it to become the source AI cites for admission questions instead of buying ads:
+
+- 800K+ Google AI Overview citations
+- 3.5M+ organic impressions
+- 17% share of authority on target topics
+
+## Terms
+
+- Month-to-month, no lock-in.
+- Clients own all content and data.
+- Nothing goes live without client approval.
+- Honest reporting from a frozen prompt set tracked across AI engines; no fake ranking guarantees.
+
+## How to engage
+
+Book a free 30-minute call at https://theogcompany.com. On the call we show, live, what AI says about the business and its competitors, and send a free AI visibility snapshot afterwards.
