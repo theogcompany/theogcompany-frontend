@@ -104,7 +104,7 @@ function ChartSvg({ variant, label }: { variant: Variant; label: string }) {
             y={H - 8}
             textAnchor={i === 0 ? "start" : i === series.length - 1 ? "end" : "middle"}
             fontSize={font}
-            fill="#64748B"
+            fill="#586579"
           >
             {s.month}
           </text>
