@@ -41,7 +41,7 @@ export function Navbar() {
     >
       <nav aria-label="Main" className="container-page flex h-16 items-center justify-between gap-6">
         <a href="#top" className="rounded-lg" aria-label={`${site.name}, back to top`}>
-          <Logo id="nav-logo" />
+          <Logo alt="" height={36} priority />
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">

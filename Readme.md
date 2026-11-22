@@ -81,7 +81,7 @@ dependencies). Re-run it to regenerate them, or just overwrite the files with re
 - `public/robots.txt`: allows all crawlers, explicitly including GPTBot, OAI-SearchBot, ClaudeBot,
   PerplexityBot and Google-Extended.
 - `public/llms.txt`: plain-language summary for LLMs. **Update it by hand when services or stats change.**
-- `app/icon.svg`: favicon (the eye-O mark).
+- `app/icon.svg`: favicon (the brand logo). The site wordmark is `public/brand/the-og-company.svg`, extracted from it.
 
 ## Deploy to Cloudflare Pages
 
@@ -103,7 +103,7 @@ Cloudflare serves the files compressed (Brotli or gzip) and cached at the edge. 
 app/            layout (fonts, metadata, JSON-LD), page, globals.css (tokens), sitemap, icon
 components/
   ui/           Pill, Card, Section, Reveal + RevealObserver, StatCounter, BrowserFrame,
-                Accordion, Modal, Blobs, Logo, Icons
+                Accordion, Modal, Blobs, Logo (wordmark), Icons
   sections/     Navbar, Hero, Shift, OriginStory, Services, HowItWorks, Tracking, WhyUs,
                 WhoFor, Promise, FAQ, FinalCTA, Footer, MobileStickyCTA (+ small client islands)
   booking/      BookingProvider (context), BookingModal (Cal.com), BookCallButton

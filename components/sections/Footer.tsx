@@ -10,7 +10,7 @@ export function Footer() {
       <div className="container-page flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
         <div className="flex flex-col gap-3">
           <a href="#top" className="w-fit rounded-lg" aria-label={`${site.name}, back to top`}>
-            <Logo id="footer-logo" />
+            <Logo alt="" height={44} />
           </a>
           <p className="text-[15px] text-body">{f.line}</p>
         </div>
