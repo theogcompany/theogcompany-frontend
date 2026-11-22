@@ -27,7 +27,7 @@ const LIT_MS = 2200;
 type EngineId = (typeof site.hero.network.engines)[number]["id"];
 type Side = -1 | 1;
 type Box = { l: number; t: number; r: number; b: number };
-type NodeGeo = { id: EngineId; name: string; x: number; y: number; side: Side };
+type NodeGeo = { id: EngineId; name: string; logo: string; x: number; y: number; side: Side };
 type Geo = { w: number; h: number; nodes: NodeGeo[]; curves: Record<string, string>; links: string[] };
 
 /** Where each engine sits: side, vertical anchor, extra outward stagger, end-point offset at the CTA. */
@@ -104,7 +104,7 @@ function link(a: NodeGeo, b: NodeGeo, bow: number, w: number) {
 function layout(m: Metrics): Geo {
   const extra = Math.min(Math.max((m.w - 1024) * 0.28, 0), 160);
   const nodes: NodeGeo[] = [];
-  for (const { id, name } of site.hero.network.engines) {
+  for (const { id, name, logo } of site.hero.network.engines) {
     const L = LAYOUT[id];
     const y = L.anchor(m);
     // Smallest horizontal offset that keeps the node CLEAR px from every text box it is level with.
@@ -118,7 +118,7 @@ function layout(m: Metrics): Geo {
     const max = L.side < 0 ? m.cx - R - EDGE : m.w - m.cx - R - EDGE;
     if (max < need) continue; // not enough gutter at this width: skip the node rather than crowd the text
     const dx = Math.min(need + extra + L.stagger, max);
-    nodes.push({ id, name, x: m.cx + L.side * dx, y, side: L.side });
+    nodes.push({ id, name, logo, x: m.cx + L.side * dx, y, side: L.side });
   }
 
   const ctaY = (m.cta.t + m.cta.b) / 2;
@@ -336,11 +336,11 @@ export function AIEngineNetworkCanvas() {
                     )}
                   >
                     <Image
-                      src={`/logos/${n.id}.svg`}
+                      src={n.logo}
                       alt=""
                       width={28}
                       height={28}
-                      className={cn("h-7 w-7 transition-[filter,opacity] duration-500", on ? "opacity-100 grayscale-0" : cn("grayscale", restOpacity))}
+                      className={cn("h-7 w-7 object-contain transition-[filter,opacity] duration-500", on ? "opacity-100 grayscale-0" : cn("grayscale", restOpacity))}
                     />
                   </div>
                   <span

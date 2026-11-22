@@ -56,16 +56,16 @@ export const site = {
       brand: "OGcollege",
       stats: ["800K+ AI citations", "3.5M+ impressions"],
     },
-    /** Decorative engine network around the hero. Logo files live in /public/logos/{id}.svg. */
+    /** Decorative engine network around the hero. Logo files live in /public/logos. */
     network: {
       label: "AI assistants we optimise for",
       caption: "Optimized for ChatGPT, Claude, Gemini, Perplexity & Grok",
       engines: [
-        { id: "chatgpt", name: "ChatGPT" },
-        { id: "claude", name: "Claude" },
-        { id: "perplexity", name: "Perplexity" },
-        { id: "gemini", name: "Gemini" },
-        { id: "grok", name: "Grok" },
+        { id: "chatgpt", name: "ChatGPT", logo: "/logos/chatgpt.png" },
+        { id: "claude", name: "Claude", logo: "/logos/claude.webp" },
+        { id: "perplexity", name: "Perplexity", logo: "/logos/perplexity.webp" },
+        { id: "gemini", name: "Gemini", logo: "/logos/gemini.png" },
+        { id: "grok", name: "Grok", logo: "/logos/grok.png" },
       ],
     },
   },

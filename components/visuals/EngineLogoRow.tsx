@@ -11,11 +11,11 @@ export function EngineLogoRow({ className }: { className?: string }) {
         {n.engines.map((e) => (
           <li key={e.id}>
             <Image
-              src={`/logos/${e.id}.svg`}
+              src={e.logo}
               alt={e.name}
               width={28}
               height={28}
-              className="h-7 w-7 opacity-70 grayscale"
+              className="h-7 w-7 object-contain opacity-70 grayscale"
             />
           </li>
         ))}

@@ -60,7 +60,7 @@ Without JavaScript, the button is a normal link to `https://cal.com/<calLink>`.
 | Google AI Overview screenshot | `public/images/ogc-ai-overview.png` | 1200×800 (3:2) |
 | Founder photo | `public/images/founder.jpg` | square, at least 320×320 |
 | Open Graph image | `public/og.png` | 1200×630 |
-| AI engine logos | `public/logos/{chatgpt,claude,perplexity,gemini,grok}.svg` | **placeholders**: drop in the official SVGs with the same names (shown as-is, never modified) |
+| AI engine logos | `public/logos/` | provided logos; paths set per engine in `site.hero.network.engines[].logo` |
 | Cal.com link | `site.booking.calLink` | currently a placeholder (Cal returns 404) |
 | "The Shift" stats + sources | `site.shift.stats` | cite real studies in `source` |
 | Growth chart data | `site.origin.chart.series` | placeholder monthly impressions (thousands) |
