@@ -48,6 +48,7 @@ export function Footer() {
       </div>
       <div className="container-page mt-12">
         <p className="text-[13px] text-subtle">{f.copyright}</p>
+        <p className="mt-2 max-w-[720px] text-[12px] leading-relaxed text-subtle">{f.trademarks}</p>
       </div>
     </footer>
   );

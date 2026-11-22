@@ -60,6 +60,7 @@ Without JavaScript, the button is a normal link to `https://cal.com/<calLink>`.
 | Google AI Overview screenshot | `public/images/ogc-ai-overview.png` | 1200×800 (3:2) |
 | Founder photo | `public/images/founder.jpg` | square, at least 320×320 |
 | Open Graph image | `public/og.png` | 1200×630 |
+| AI engine logos | `public/logos/{chatgpt,claude,perplexity,gemini,grok}.svg` | **placeholders**: drop in the official SVGs with the same names (shown as-is, never modified) |
 | Cal.com link | `site.booking.calLink` | currently a placeholder (Cal returns 404) |
 | "The Shift" stats + sources | `site.shift.stats` | cite real studies in `source` |
 | Growth chart data | `site.origin.chart.series` | placeholder monthly impressions (thousands) |
@@ -120,5 +121,9 @@ public/         images, og.png, robots.txt, llms.txt
 - **Performance.** Below-the-fold sections use `content-visibility: auto`. The ambient loops (blob drift,
   pill float, button shimmer) start after the page has loaded and gone idle. The chat demo types straight
   into the DOM and fades words in with CSS, so React re-renders only a few times per loop.
+- **Hero engine network.** `AIEngineNetwork` loads its chunk only at ≥1024px, after load + idle. It measures
+  the real headline, subtext and CTA, places each logo at least 80 px from them, and routes the curves down the
+  gutters and under the subtext. Animation pauses when the hero is off screen or the tab is hidden. Below
+  1024px a static logo row (`EngineLogoRow`) shows instead.
 - **Reduced motion.** Under `prefers-reduced-motion` the typewriter, counters, blobs and timeline fill
   are switched off and their final state is shown.

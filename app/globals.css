@@ -492,3 +492,16 @@ p {
     display: none;
   }
 }
+
+/* Hero engine network: fades in once mounted (it loads after idle, absolutely positioned → no layout shift). */
+@keyframes aen-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.aen-in {
+  animation: aen-in 0.9s ease-out both;
+}

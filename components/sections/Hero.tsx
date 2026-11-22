@@ -3,6 +3,8 @@ import { Blobs } from "@/components/ui/Blobs";
 import { Pill } from "@/components/ui/Pill";
 import { BookCallButton } from "@/components/booking/BookCallButton";
 import { AIChatDemo } from "@/components/visuals/AIChatDemo";
+import { AIEngineNetwork } from "@/components/visuals/AIEngineNetwork";
+import { EngineLogoRow } from "@/components/visuals/EngineLogoRow";
 import { cn } from "@/lib/cn";
 
 /** Positions for the floating engine pills around the chat window (desktop). */
@@ -42,6 +44,7 @@ export function Hero() {
         <div id="hero-cta" className="hero-in mt-9 flex flex-col items-center gap-3" style={{ animationDelay: "160ms" }}>
           <BookCallButton size="lg" />
           <p className="text-[13px] text-body">{site.booking.heroMicrocopy}</p>
+          <EngineLogoRow className="mt-4 lg:hidden" />
         </div>
 
         <div className="hero-in relative mt-16 w-full max-w-[760px] md:mt-20" style={{ animationDelay: "240ms" }}>
@@ -75,6 +78,9 @@ export function Hero() {
           ))}
         </p>
       </div>
+
+      {/* Decorative engine network (≥1024px). After the content in DOM order so focus goes H1 → CTA first. */}
+      <AIEngineNetwork />
     </section>
   );
 }

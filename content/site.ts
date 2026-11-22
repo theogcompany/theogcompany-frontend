@@ -56,6 +56,18 @@ export const site = {
       brand: "OGcollege",
       stats: ["800K+ AI citations", "3.5M+ impressions"],
     },
+    /** Decorative engine network around the hero. Logo files live in /public/logos/{id}.svg. */
+    network: {
+      label: "AI assistants we optimise for",
+      caption: "Optimized for ChatGPT, Claude, Gemini, Perplexity & Grok",
+      engines: [
+        { id: "chatgpt", name: "ChatGPT" },
+        { id: "claude", name: "Claude" },
+        { id: "perplexity", name: "Perplexity" },
+        { id: "gemini", name: "Gemini" },
+        { id: "grok", name: "Grok" },
+      ],
+    },
   },
 
   /** Hero chat demo. `highlight` is the brand name rendered with the gradient + badge. */
@@ -415,6 +427,8 @@ export const site = {
   footer: {
     line: "Get recommended in AI search.",
     copyright: "© 2026 The OG Company",
+    trademarks:
+      "ChatGPT, Claude, Gemini, Perplexity and Grok are trademarks of their respective owners. The OG Company is not affiliated with or endorsed by them.",
     links: [
       { label: "What we do", href: "#services" },
       { label: "How it works", href: "#how" },
